@@ -8,7 +8,7 @@ public class PlayerFOV : MonoBehaviour
     [SerializeField] float WaterBottleDrain = 100f;
     [SerializeField] float BucketDrain = 50f;
     [SerializeField] float PistolDrain = 20f;
-    [SerializeField] float BazookaDrain = 50f;
+    [SerializeField] float BazookaDrain = 100f;
     [SerializeField] int Tool = 1;
     [SerializeField] GameObject SizeSmall;
     [SerializeField] public int Score;
@@ -74,6 +74,15 @@ public class PlayerFOV : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other) 
     {
+
+         //Reloading at fountain
+
+        if(other.tag == "Water Fountain" && Input.GetKey(KeyCode.R))
+        {
+            WaterLevel = 100f;
+            Debug.Log("Reloaded");
+        }
+        
         /* Different Fire types and making them decrease in size with
         The press of space. Tool system put in place here*/
 
@@ -138,32 +147,24 @@ public class PlayerFOV : MonoBehaviour
         {
             if(other.tag == "FireSmall" && Input.GetKey(KeyCode.Space) && WaterLevel >= 1) 
             {
-                other.transform.localScale -= new Vector3(0.75f, 0.75f, 0);
+                other.transform.localScale -= new Vector3(0.5f, 0.5f, 0);
                 WaterLevel -= BazookaDrain;
             } else if(other.tag == "FireMedium" && Input.GetKey(KeyCode.Space) && WaterLevel >= 1) 
             {
-                other.transform.localScale -= new Vector3(0.75f, 0.75f, 0);
+                other.transform.localScale -= new Vector3(0.5f, 0.5f, 0);
                 WaterLevel -= BazookaDrain;
             } else if(other.tag == "FireLarge" && Input.GetKey(KeyCode.Space) && WaterLevel >= 1) 
             {
-                other.transform.localScale -= new Vector3(0.75f, 0.75f, 0);
+                other.transform.localScale -= new Vector3(0.5f, 0.5f, 0);
                 WaterLevel -= BazookaDrain;
             } else if(other.tag == "FireHuge" && Input.GetKey(KeyCode.Space) && WaterLevel >= 1) 
             {
-                other.transform.localScale -= new Vector3(0.75f, 0.75f, 0);
+                other.transform.localScale -= new Vector3(0.5f, 0.5f, 0);
                 WaterLevel -= BazookaDrain;
             }
         } else if(Input.GetKey(KeyCode.Space))
         {
             Debug.Log("Not a valid Tool");
-        }
-
-        //Reloading at fountain
-
-        if(other.tag == "Water Fountain" && Input.GetKeyDown(KeyCode.R))
-        {
-            WaterLevel = 100f;
-            Debug.Log("Reloaded");
         }
 
         /* Destroying fire object after it reaches a certain magnatude and adding 

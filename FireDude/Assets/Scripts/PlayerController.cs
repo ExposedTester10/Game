@@ -62,4 +62,20 @@ public class PlayerController : MonoBehaviour
         }
 
     }
+    private void LateUpdate() 
+    {
+        if(Input.GetKeyUp(KeyCode.W) && Input.GetKeyUp(KeyCode.A)) 
+        {
+            transform.rotation = W;
+        } else if(Input.GetKeyUp(KeyCode.W) && Input.GetKeyUp(KeyCode.D)) 
+        {
+            transform.rotation = D;
+        } else if(Input.GetKeyUp(KeyCode.S) && Input.GetKeyUp(KeyCode.D)) 
+        {
+            transform.rotation = S;
+        } else if(Input.GetKeyUp(KeyCode.S) && Input.GetKeyUp(KeyCode.A)) 
+        {
+            transform.rotation = A;
+        }
+    }
 }
