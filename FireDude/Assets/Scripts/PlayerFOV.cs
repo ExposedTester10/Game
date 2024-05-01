@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerFOV : MonoBehaviour
 {
     float WaterLevel;
+    [SerializeField] GameObject Player;
     [SerializeField] float WaterBottleDrain = 100f;
     [SerializeField] float BucketDrain = 50f;
     [SerializeField] float PistolDrain = 20f;
@@ -34,6 +35,10 @@ public class PlayerFOV : MonoBehaviour
 
     private void Update() 
     {
+
+        transform.position = Player.transform.position;
+        transform.rotation = Player.transform.rotation; 
+
         if(Score >= 1450) 
         {
             Debug.Log("You won!!");
