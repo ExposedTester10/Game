@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerFOV : MonoBehaviour
 {
-    float WaterLevel;
+    public float WaterLevel;
     [SerializeField] GameObject Player;
     [SerializeField] float WaterBottleDrain = 100f;
     [SerializeField] float BucketDrain = 50f;

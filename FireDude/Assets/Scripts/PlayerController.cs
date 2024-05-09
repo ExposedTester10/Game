@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public bool InFire = false;
     [SerializeField] float speed = 20f;
     float movement;
     float acceleration;
+    float timeSinceFireTouch;
     Quaternion W = Quaternion.Euler(0, 0, 0);
      Quaternion S = Quaternion.Euler(0, 0, 180);
       Quaternion A = Quaternion.Euler(0, 0, 90);
@@ -78,4 +80,11 @@ public class PlayerController : MonoBehaviour
             transform.rotation = A;
         }
     }
-}
+    private void OnTriggerStay2D(Collider2D other) 
+    {
+        if(other.tag == "Fire")
+        {
+            InFire = true;
+        }
+    }
+}   
