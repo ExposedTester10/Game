@@ -12,7 +12,8 @@ public class PlayerFOV : MonoBehaviour
     [SerializeField] float BazookaDrain = 100f;
     public int Tool = 1;
     [SerializeField] GameObject SizeSmall;
-    [SerializeField] public int Score;
+    public int Score;
+    public int money;
 
     // Turorial
 
@@ -39,11 +40,6 @@ public class PlayerFOV : MonoBehaviour
         transform.position = Player.transform.position;
         transform.rotation = Player.transform.rotation; 
 
-        if(Score >= 500) 
-        {
-            Debug.Log("You won!!");
-        }
-
         if(Input.GetKeyDown(KeyCode.UpArrow))
         {
             Tool += 1;
@@ -54,27 +50,10 @@ public class PlayerFOV : MonoBehaviour
             Debug.Log("Tool Changed");
         }
 
-        if(Input.GetKeyDown(KeyCode.F) && Tool == 1)
-        {
-            Debug.Log("Currently equipped: Water Bottle");
-        } else if(Input.GetKey(KeyCode.F) && Tool == 2)
-        {
-            Debug.Log("Currently equipped: Bucket");
-        } else if(Input.GetKey(KeyCode.F) && Tool == 3)
-        {
-            Debug.Log("Currently equipped: Water Pistol");
-        } else if(Input.GetKey(KeyCode.F) && Tool == 4)
-        {
-            Debug.Log("Currently equipped: Bazooka");
-        } else if(Input.GetKey(KeyCode.F) && Tool > 4 || Tool < 1)
-        {
-            Debug.Log("Nothing is equiped, weapon code " + Tool);
-        }
-
-        if(Input.GetKey(KeyCode.T))
+       /* if(Input.GetKey(KeyCode.T))
         {
             Debug.Log("Your Score is " + Score);
-        }
+        } */
     }
 
     private void OnTriggerStay2D(Collider2D other) 
@@ -178,18 +157,22 @@ public class PlayerFOV : MonoBehaviour
         {
             Destroy(other.gameObject);
             Score += 20;
+            money += 2;
         } else if(other.tag == "FireMedium" && other.transform.localScale.magnitude <= SizeSmall.transform.localScale.magnitude)
         {
             Destroy(other.gameObject);
             Score += 50;
+            money += 5;
         } else if(other.tag == "FireLarge" && other.transform.localScale.magnitude <= SizeSmall.transform.localScale.magnitude)
         {
             Destroy(other.gameObject);
             Score += 100;
+            money += 7;
         } else if(other.tag == "FireHuge" && other.transform.localScale.magnitude <= SizeSmall.transform.localScale.magnitude)
         {
             Destroy(other.gameObject);
             Score += 200;
+            money += 10;
         }
 
     }
