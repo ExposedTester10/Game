@@ -10,7 +10,7 @@ public class PlayerFOV : MonoBehaviour
     [SerializeField] float BucketDrain = 50f;
     [SerializeField] float PistolDrain = 20f;
     [SerializeField] float BazookaDrain = 100f;
-    [SerializeField] int Tool = 1;
+    public int Tool = 1;
     [SerializeField] GameObject SizeSmall;
     [SerializeField] public int Score;
 
@@ -39,7 +39,7 @@ public class PlayerFOV : MonoBehaviour
         transform.position = Player.transform.position;
         transform.rotation = Player.transform.rotation; 
 
-        if(Score >= 1450) 
+        if(Score >= 500) 
         {
             Debug.Log("You won!!");
         }

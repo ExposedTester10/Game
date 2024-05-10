@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -15,6 +16,10 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] GameObject Water20;
     [SerializeField] GameObject Water10;
     [SerializeField] GameObject Water0;
+    [SerializeField] GameObject PistolIcon;
+    [SerializeField] GameObject WaterBottle;
+    [SerializeField] GameObject Bucket;
+    [SerializeField] GameObject Bazooka;
     PlayerFOV playerFov;
     [SerializeField] GameObject Player;
     [SerializeField] GameObject Camera;
@@ -149,7 +154,36 @@ public class PlayerUI : MonoBehaviour
             Water30.SetActive(false);
             Water20.SetActive(false);
             Water10.SetActive(false);
-            Water0.SetActive(true); 
+            Water0.SetActive(true);
+
+           if(playerFov.Tool == 1)
+           {
+                WaterBottle.SetActive(true);
+           } else if(playerFov.Tool != 1)
+           {
+                WaterBottle.SetActive(false);
+           }
+           if(playerFov.Tool == 2)
+           {
+                Bucket.SetActive(true);
+           } else if(playerFov.Tool != 2)
+           {
+                Bucket.SetActive(false);
+           }
+           if(playerFov.Tool == 3)
+           {
+                PistolIcon.SetActive(true);
+           } else if(playerFov.Tool != 3)
+           {
+                PistolIcon.SetActive(false);
+           }
+           if(playerFov.Tool == 4)
+           {
+                Bazooka.SetActive(true);
+           }else if(playerFov.Tool != 4)
+           {
+                Bazooka.SetActive(false);
+           }
         }
     }
 }

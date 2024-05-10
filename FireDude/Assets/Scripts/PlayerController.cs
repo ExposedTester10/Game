@@ -1,15 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public bool InFire = false;
     [SerializeField] float speed = 20f;
     float movement;
     float acceleration;
-    float timeSinceFireTouch;
+    [SerializeField] float HurtCooldown;
     Quaternion W = Quaternion.Euler(0, 0, 0);
      Quaternion S = Quaternion.Euler(0, 0, 180);
       Quaternion A = Quaternion.Euler(0, 0, 90);
@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour
 
         movement = speed * acceleration * Time.deltaTime;
         transform.Translate(0, movement, 0);
-
         if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A)) 
         {
             acceleration = 1;
@@ -80,11 +79,5 @@ public class PlayerController : MonoBehaviour
             transform.rotation = A;
         }
     }
-    private void OnTriggerStay2D(Collider2D other) 
-    {
-        if(other.tag == "Fire")
-        {
-            InFire = true;
-        }
-    }
+    
 }   
