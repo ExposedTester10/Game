@@ -40,7 +40,7 @@ public class PlayerFOV : MonoBehaviour
         transform.position = Player.transform.position;
         transform.rotation = Player.transform.rotation; 
 
-        if(Input.GetKeyDown(KeyCode.UpArrow))
+       /* if(Input.GetKeyDown(KeyCode.UpArrow))
         {
             Tool += 1;
             Debug.Log("Tool Changed");
@@ -50,7 +50,7 @@ public class PlayerFOV : MonoBehaviour
             Debug.Log("Tool Changed");
         }
 
-       /* if(Input.GetKey(KeyCode.T))
+         if(Input.GetKey(KeyCode.T))
         {
             Debug.Log("Your Score is " + Score);
         } */

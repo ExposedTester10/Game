@@ -6,10 +6,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public Animator PlayerAnim;
     [SerializeField] float speed = 20f;
     float movement;
     float acceleration;
-    [SerializeField] float HurtCooldown;
+    float rotation;
+    float move;
     Quaternion W = Quaternion.Euler(0, 0, 0);
      Quaternion S = Quaternion.Euler(0, 0, 180);
       Quaternion A = Quaternion.Euler(0, 0, 90);
@@ -20,11 +22,14 @@ public class PlayerController : MonoBehaviour
            Quaternion SD = Quaternion.Euler(0, 0, -135);
     void Start()
     {
-
+        rotation = -180;
     }
     
     void Update()
     {
+
+        PlayerAnim.SetFloat("Rotation", rotation);
+        PlayerAnim.SetFloat("Speed", move);
 
         movement = speed * acceleration * Time.deltaTime;
         transform.Translate(0, movement, 0);
@@ -39,27 +44,46 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
         {
             transform.rotation = WD;
+            rotation = -45;
+            move = 1;
         } else if(Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
         {
             transform.rotation = WA;
+            rotation = 45;
+            move = 1;
         } else if(Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
         {
             transform.rotation = SD;
+            rotation = -135;
+            move = 1;
         } else if(Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
         {
             transform.rotation = SA;
+            rotation = 135;
+            move = 1;
         } else if(Input.GetKey(KeyCode.S))
         {
             transform.rotation = S;
+            rotation = -180;
+            move = 1;
         } else if(Input.GetKey(KeyCode.W))
         {
             transform.rotation = W;
+            rotation = 0;
+            move = 1;
         } else if(Input.GetKey(KeyCode.A))
         {
             transform.rotation = A;
+            rotation = 90;
+            move = 1;
         } else if(Input.GetKey(KeyCode.D))
         {
             transform.rotation = D;
+            rotation = -90;
+            move = 1;
+        } else
+        {
+            move = 0;
         }
 
     }

@@ -34,7 +34,7 @@ public class PlayerUI : MonoBehaviour
     void Update()
     {
         transform.position = Camera.transform.position + new Vector3(0, 0, 5);
-
+        ToolIcons();
        if(playerFov.WaterLevel >= 90)
         {
             Water90.SetActive(true);
@@ -155,8 +155,11 @@ public class PlayerUI : MonoBehaviour
             Water20.SetActive(false);
             Water10.SetActive(false);
             Water0.SetActive(true);
+        }
 
-           if(playerFov.Tool == 1)
+        void ToolIcons()
+        {
+            if(playerFov.Tool == 1)
            {
                 WaterBottle.SetActive(true);
            } else if(playerFov.Tool != 1)

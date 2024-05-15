@@ -8,7 +8,7 @@ public class TimerScript : MonoBehaviour
     // Add your best times here
     /*
     1 2:30
-    2
+    2 2:12
     3
     4
     5
@@ -34,6 +34,7 @@ public class TimerScript : MonoBehaviour
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] GameObject win;
     [SerializeField] GameObject loose;
+    [SerializeField] GameObject tutorialText;
     bool stopTimer = false;
     float timer;
     [SerializeField] float startTimer;
@@ -43,18 +44,19 @@ public class TimerScript : MonoBehaviour
     [SerializeField] GameObject player;
        void Start()
     {
-        // timer = startTimer;
-        timer = 1;
+        timer = startTimer;
+        // timer = 1;
         playerFOVScript = playerFOV.GetComponent<PlayerFOV>();
         win.SetActive(false);
         loose.SetActive(false);
+        tutorialText.SetActive(true);
     }
 
     void Update()
     {
         if(timer > 0 && !stopTimer)
         {
-            timer += Time.deltaTime;
+            timer -= Time.deltaTime;
         } else if(timer <= 0)
         {
             timer = 0;
@@ -63,6 +65,11 @@ public class TimerScript : MonoBehaviour
         if(playerFOVScript.Score >= winCondition)
         {
             Win();
+        }
+
+        if(timer <= 135)
+        {
+            tutorialText.SetActive(false);
         }
         
         int minutes = Mathf.FloorToInt(timer / 60);
